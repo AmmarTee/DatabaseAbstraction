@@ -2,22 +2,29 @@
 
 session_start();
 
+error_reporting(0);
+
 if (isset($_SESSION['user_id'])) {
 	header("Location: /");
 }
 
 require 'database.php';
-
+$email = '';
+$password = '';
+$email = $_POST['email'];
+$password = $_POST['password'];
 $message = '';
 
-if (!empty($_POST['email']) && !empty($_POST['password'])) :
+if (!empty($email) && !empty($password)) :
 
 	// Enter the new user in the database
 	$sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
 	$stmt = $conn->prepare($sql);
 
-	$stmt->bindParam(':email', $_POST['email']);
-	$stmt->bindParam(':password', password_hash($_POST['password'], PASSWORD_BCRYPT));
+	
+
+	$stmt->bindParam(':email', $email);
+	$stmt->bindParam(':password', password_hash($password, PASSWORD_BCRYPT));
 
 	if ($stmt->execute()) :
 		$message = 'Successfully created new user';

@@ -2,22 +2,30 @@
 
 session_start();
 
+error_reporting(0);
+
 if (isset($_SESSION['user_id'])) {
 	header("Location: /");
 }
 
 require 'database.php';
+$email = '';
+$password = '';
+$email = $_POST['email'];
+$password = $_POST['password'];
+$message = '';
 
-if (!empty($_POST['email']) && !empty($_POST['password'])) :
+
+if (!empty($email) && !empty($password)) :
 
 	$records = $conn->prepare('SELECT id,email,password FROM users WHERE email = :email');
-	$records->bindParam(':email', $_POST['email']);
+	$records->bindParam(':email', $email);
 	$records->execute();
 	$results = $records->fetch(PDO::FETCH_ASSOC);
 
 	$message = '';
 
-	if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
+	if (count($results) > 0 && password_verify($password, $results['password'])) {
 
 		$_SESSION['user_id'] = $results['id'];
 		header("Location: /");
