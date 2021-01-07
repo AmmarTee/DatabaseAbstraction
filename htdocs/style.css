@@ -1,4 +1,4 @@
-input[type="text"], input[type="password"]{
+input[type="email"], input[type="password"]{
 	outline:none;
 	padding:10px;
 	display:block;
