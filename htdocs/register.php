@@ -61,9 +61,9 @@ endif;
 
 	<form action="register.php" method="POST">
 
-		<input type="text" placeholder="Enter your email" name="email">
-		<input type="password" placeholder="and password" name="password">
-		<input type="password" placeholder="confirm password" name="confirm_password">
+		<input type="email" placeholder="Enter your email" name="email" required>
+		<input type="password" placeholder="and password" name="password" required>
+		<input type="password" placeholder="confirm password" name="confirm_password" required>
 		<input type="submit">
 
 	</form>
