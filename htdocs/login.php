@@ -62,8 +62,8 @@ endif;
 	<h1>Login</h1>
 	<form action="login.php" method="POST">
 
-		<input type="text" placeholder="Enter your email" name="email">
-		<input type="password" placeholder="and password" name="password">
+		<input type="email" placeholder="Enter your email" name="email" required>
+		<input type="password" placeholder="and password" name="password" required>
 		<input class="btn btn-outline-primary" type="submit">
 
 	</form>
